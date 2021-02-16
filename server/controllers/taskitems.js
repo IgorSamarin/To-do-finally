@@ -26,4 +26,24 @@ module.exports = {
       })
       .catch((error) => res.status(400).send(error));
   },
+  update(req, res) {
+    return TaskItem.findByPk(req.params.id)
+      .then((task) => {
+        if (!task) {
+          return res.status(404).send({
+            message: 'Item Not Found',
+          });
+        }
+        return task
+          .update({
+            text: req.body.text,
+            complete: req.body.done || task.complete,
+          })
+          .then((updatedTaskItem) => {
+            res.status(200).send(updatedTaskItem);
+          })
+          .catch((err) => res.status(400).send(err));
+      })
+      .catch((err) => res.status(400).send(err));
+  },
 };

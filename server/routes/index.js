@@ -9,4 +9,5 @@ module.exports = (app) => {
   app.post('/api', taskItemsController.create);
   app.get('/api', taskItemsController.list);
   app.get('/api/:id',taskItemsController.retrieve)
+  app.put('/api/:id',taskItemsController.update)
 };
