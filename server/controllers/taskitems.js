@@ -14,4 +14,16 @@ module.exports = {
       .then((tasks) => res.send(tasks))
       .catch((error) => res.send(error));
   },
+  retrieve(req, res) {
+    return TaskItem.findByPk(req.params.id)
+      .then((todo) => {
+        if (!todo) {
+          return res.status(404).send({
+            message: 'Todo Not Found',
+          });
+        }
+        return res.status(200).send(todo);
+      })
+      .catch((error) => res.status(400).send(error));
+  },
 };
