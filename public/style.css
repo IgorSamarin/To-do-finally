@@ -61,8 +61,6 @@ body form input {
 }
 
 body form button {
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
   position: relative;
   padding: 10px 20px;
   background-color: rgba(0, 0, 0, 0);
@@ -79,14 +77,14 @@ body form button::before {
   background-color: rgba(255, 255, 255, 0.61);
 }
 
-body .taskList {
+body #taskList {
   width: 80%;
   max-width: 800px;
   margin: 0 auto;
   margin-top: 50px;
 }
 
-body .taskList .task {
+body #taskList .task {
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -97,19 +95,23 @@ body .taskList .task {
   margin-top: 20px;
 }
 
-body .taskList .task p {
+body #taskList .task.complete {
+  background-color: #092f79;
+}
+
+body #taskList .task span {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
 
-body .taskList .task .taskBtn {
+body #taskList .task .taskBtn {
   background-color: rgba(0, 0, 0, 0);
   padding: 0px 20px;
   position: relative;
 }
 
-body .taskList .task .taskBtn::before {
+body #taskList .task .taskBtn::before {
   content: '';
   position: absolute;
   width: 1px;

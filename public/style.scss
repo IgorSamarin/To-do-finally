@@ -47,7 +47,6 @@ body {
       padding: 10px 20px;
     }
     button {
-      transition: 0.2s;
       position: relative;
       padding: 10px 20px;
       background-color: rgba(0, 0, 0, 0);
@@ -63,20 +62,23 @@ body {
       }
     }
   }
-  .taskList {
+  #taskList {
     width: 80%;
     max-width: 800px;
     margin: 0 auto;
     margin-top: 50px;
 
     .task {
+      &.complete{
+        background-color: rgba(9, 47, 121, 1);
+      }
       padding: 5px;
       display: flex;
       list-style-type: none;
       background-color: rgba(255, 255, 255, 0.178);
       border: 1px solid rgba(255, 255, 255, 0.61);
       margin-top: 20px;
-      p {
+      span {
         flex-grow: 1;
       }
       .taskBtn {
