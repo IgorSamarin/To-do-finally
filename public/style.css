@@ -92,11 +92,15 @@ body #taskList .task {
   list-style-type: none;
   background-color: rgba(255, 255, 255, 0.178);
   border: 1px solid rgba(255, 255, 255, 0.61);
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 body #taskList .task.complete {
-  background-color: #092f79;
+  background-color: #0c1b192b;
+}
+
+body #taskList .task.complete span {
+  text-decoration: line-through;
 }
 
 body #taskList .task span {
@@ -109,6 +113,7 @@ body #taskList .task .taskBtn {
   background-color: rgba(0, 0, 0, 0);
   padding: 0px 20px;
   position: relative;
+  cursor: pointer;
 }
 
 body #taskList .task .taskBtn::before {

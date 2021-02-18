@@ -8,20 +8,56 @@ const btnDone = '<button class="btnDone taskBtn">Done</button>';
 taskForm.addEventListener('submit', () => {
   event.preventDefault();
   let taskText = event.target.childNodes[1].value;
-  addTask(taskText);
+  let textArr = taskText.trim().split(' ');
+  if (textArr != '') {
+    AddTask(taskText);
+    taskForm.reset();
+  }
 });
-
-(async function GetItems() {
+async function AddTask(taskText) {
+  let reqBody = { text: taskText };
+  const response = await fetch('/api', {
+    method: 'POST',
+    headers: { 'Content-Type': `application/json` },
+    body: JSON.stringify(reqBody),
+  });
+  if (response.ok === true) {
+    const task = await response.json();
+    GetItems();
+  }
+}
+async function GetItems() {
+  taskList.innerHTML = '';
   const response = await fetch('/api', {
     method: 'GET',
-    headers: { Accept: 'applications/json' },
+    headers: { 'Content-Type': 'application/json' },
   });
   if (response.ok === true) {
     const tasks = await response.json();
     createTasks(tasks);
   }
-})();
+}
+GetItems();
 
+async function DeleteTask(id) {
+  const response = await fetch(`/api/${id}`, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    GetItems();
+  }
+}
+async function TaskDone(id) {
+  const response = await fetch(`/api/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    console.log(id);
+    
+  }
+}
 const createTasks = (tasks) => {
   tasks.forEach((task) => {
     let taskLi = document.createElement('li');
@@ -36,6 +72,16 @@ const createTasks = (tasks) => {
     taskLi.innerHTML += btnDelete;
     taskLi.innerHTML += btnEdit;
     taskLi.innerHTML += btnDone;
-    taskList.appendChild(taskLi);
+    taskList.prepend(taskLi);
+
+    // taskLi.addEventListener('click', () => {
+    //   console.log(`click to ${event.currentTarget.getAttribute('data-id')}`);
+    // })
+    taskLi.querySelector('.btnDelete').addEventListener('click', () => {
+      DeleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
+    });
+    taskLi.querySelector('.btnDone').addEventListener('click', () => {
+      TaskDone(event.currentTarget.parentElement.getAttribute('data-id'));
+    });
   });
 };
