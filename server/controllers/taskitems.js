@@ -36,8 +36,12 @@ module.exports = {
         }
         return task
           .update({
-            text: req.body.text,
-            complete: req.body.done || task.complete,
+            text: req.body.text || task.text,
+            complete:
+              req.body.complete === undefined
+                ? task.complete
+                : req.body.complete,
+                
           })
           .then((updatedTaskItem) => {
             res.status(200).send(updatedTaskItem);

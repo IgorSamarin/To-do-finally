@@ -48,14 +48,25 @@ async function DeleteTask(id) {
     GetItems();
   }
 }
-async function TaskDone(id) {
+async function TaskDone(classes, id) {
+  let completed = classes.value.includes('complete');
   const response = await fetch(`/api/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ complete: !completed }),
   });
   if (response.ok === true) {
-    console.log(id);
-    
+    GetItems();
+  }
+}
+async function TaskEdit(taskText, id) {
+  const response = await fetch(`/api/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text: taskText }),
+  });
+  if (response.ok === true) {
+    GetItems();
   }
 }
 const createTasks = (tasks) => {
@@ -73,15 +84,20 @@ const createTasks = (tasks) => {
     taskLi.innerHTML += btnEdit;
     taskLi.innerHTML += btnDone;
     taskList.prepend(taskLi);
-
-    // taskLi.addEventListener('click', () => {
-    //   console.log(`click to ${event.currentTarget.getAttribute('data-id')}`);
-    // })
-    taskLi.querySelector('.btnDelete').addEventListener('click', () => {
+    taskLi.querySelector('.btnDelete').addEventListener('click', (event) => {
       DeleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
     });
-    taskLi.querySelector('.btnDone').addEventListener('click', () => {
-      TaskDone(event.currentTarget.parentElement.getAttribute('data-id'));
+    taskLi.querySelector('.btnDone').addEventListener('click', (event) => {
+      TaskDone(
+        event.currentTarget.parentElement.classList,
+        event.currentTarget.parentElement.getAttribute('data-id')
+      );
+    });
+    taskLi.querySelector('.btnEdit').addEventListener('click', (event) => {
+      TaskEdit(
+        event.currentTarget.parentElement.childNodes[0].innerText,
+        event.currentTarget.parentElement.getAttribute('data-id')
+      );
     });
   });
 };
