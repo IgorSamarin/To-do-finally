@@ -1,6 +1,5 @@
 const taskForm = document.getElementById('taskForm');
 const taskList = document.getElementById('taskList');
-
 const btnDelete = '<button class="btnDelete taskBtn">Delete</button>';
 const btnEdit = '<button class="btnEdit taskBtn">Edit</button>';
 const btnDone = '<button class="btnDone taskBtn">Done</button>';
@@ -69,6 +68,17 @@ async function TaskEdit(taskText, id) {
     GetItems();
   }
 }
+
+const editForm = document.createElement('form');
+editForm.setAttribute('onsubmit', 'editText()');
+editForm.innerHTML = '<input type="text">';
+function editText() {
+  event.preventDefault();
+  TaskEdit(
+    event.currentTarget.childNodes[0].value,
+    event.currentTarget.parentElement.getAttribute('data-id')
+  );
+}
 const createTasks = (tasks) => {
   tasks.forEach((task) => {
     let taskLi = document.createElement('li');
@@ -94,10 +104,13 @@ const createTasks = (tasks) => {
       );
     });
     taskLi.querySelector('.btnEdit').addEventListener('click', (event) => {
-      TaskEdit(
-        event.currentTarget.parentElement.childNodes[0].innerText,
-        event.currentTarget.parentElement.getAttribute('data-id')
-      );
+      let taskTest = event.currentTarget.parentElement.childNodes[0].innerText;
+      let taskId = event.currentTarget.parentElement.getAttribute('data-id');
+      taskLi.innerHTML = '';
+      taskLi.appendChild(editForm);
+      taskLi.innerHTML += btnDelete;
+      taskLi.innerHTML += btnEdit;
+      taskLi.innerHTML += btnDone;
     });
   });
 };

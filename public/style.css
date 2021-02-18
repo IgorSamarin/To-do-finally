@@ -109,6 +109,14 @@ body #taskList .task span {
           flex-grow: 1;
 }
 
+body #taskList .task form {
+  padding: 0;
+}
+
+body #taskList .task form input {
+  padding: 0;
+}
+
 body #taskList .task .taskBtn {
   background-color: rgba(0, 0, 0, 0);
   padding: 0px 20px;
@@ -125,5 +133,9 @@ body #taskList .task .taskBtn::before {
   top: calc((100% / 2) - 15%);
   top: 0;
   left: 0;
+}
+
+body #taskList .task .btnDelete {
+  margin-left: 5px;
 }
 /*# sourceMappingURL=style.css.map */

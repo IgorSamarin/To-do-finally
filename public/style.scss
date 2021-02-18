@@ -69,6 +69,7 @@ body {
     margin-top: 50px;
 
     .task {
+      
       &.complete {
         background-color: #0c1b192b;
         span {
@@ -84,6 +85,13 @@ body {
       span {
         flex-grow: 1;
       }
+      form {
+        padding: 0;
+        input {
+          padding: 0;
+        }
+      }
+
       .taskBtn {
         background-color: rgba(0, 0, 0, 0);
         padding: 0px 20px;
@@ -99,6 +107,10 @@ body {
           top: 0;
           left: 0;
         }
+      }
+      .btnDelete{
+        
+        margin-left: 5px;
       }
     }
   }
