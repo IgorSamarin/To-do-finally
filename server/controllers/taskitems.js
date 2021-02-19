@@ -10,9 +10,29 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
   list(req, res) {
-    return TaskItem.findAll({ raw: true })
-      .then((tasks) => res.send(tasks))
-      .catch((error) => res.send(error));
+    if (req.path == '/api') {
+      return TaskItem.findAll({ raw: true })
+        .then((tasks) => res.send(tasks))
+        .catch((error) => res.send(error));
+    } else if (req.path == '/api/done') {
+      return TaskItem.findAll({ raw: true }).then((tasks) => {
+        let tasksDone = tasks.filter((task) => {
+          if (task.complete) {
+            return task;
+          }
+        });
+        res.send(tasksDone);
+      });
+    } else if (req.path == '/api/undone') {
+      return TaskItem.findAll({ raw: true }).then((tasks) => {
+        let tasksDone = tasks.filter((task) => {
+          if (!task.complete) {
+            return task;
+          }
+        });
+        res.send(tasksDone);
+      });
+    }
   },
   retrieve(req, res) {
     return TaskItem.findByPk(req.params.id)
@@ -41,7 +61,6 @@ module.exports = {
               req.body.complete === undefined
                 ? task.complete
                 : req.body.complete,
-                
           })
           .then((updatedTaskItem) => {
             res.status(200).send(updatedTaskItem);

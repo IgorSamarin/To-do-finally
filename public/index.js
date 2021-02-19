@@ -3,7 +3,8 @@ const taskList = document.getElementById('taskList');
 const btnDelete = '<button class="btnDelete taskBtn">Delete</button>';
 const btnEdit = '<button class="btnEdit taskBtn">Edit</button>';
 const btnDone = '<button class="btnDone taskBtn">Done</button>';
-
+const btnTimeline = document.getElementById('btnTimeline');
+const btnState = document.getElementById('btnState');
 taskForm.addEventListener('submit', () => {
   event.preventDefault();
   let taskText = event.target.childNodes[1].value;
@@ -37,7 +38,28 @@ async function GetItems() {
   }
 }
 GetItems();
-
+async function GetDoneTasks() {
+  taskList.innerHTML = '';
+  const response = await fetch('/api/done', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    const tasks = await response.json();
+    createTasks(tasks);
+  }
+}
+async function GetUndoneTasks() {
+  taskList.innerHTML = '';
+  const response = await fetch('/api/undone', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    const tasks = await response.json();
+    createTasks(tasks);
+  }
+}
 async function DeleteTask(id) {
   const response = await fetch(`/api/${id}`, {
     method: 'DELETE',
@@ -114,3 +136,36 @@ const createTasks = (tasks) => {
     });
   });
 };
+
+let stateCounter = 1;
+btnState.addEventListener('click', () => {
+  stateCounter++;
+  switch (stateCounter) {
+    case 1:
+      btnState.innerText = 'All';
+      GetItems();
+      break;
+    case 2:
+      btnState.innerText = 'Done';
+      GetDoneTasks();
+      break;
+    case 3:
+      btnState.innerText = 'Undone';
+      GetUndoneTasks();
+      stateCounter = 0;
+      break;
+  }
+});
+let timelineCounter = 1;
+btnTimeline.addEventListener('click', () => {
+  timelineCounter++;
+  switch (timelineCounter) {
+    case 1:
+      btnTimeline.innerText = 'Normal';
+      break;
+    case 2:
+      btnTimeline.innerText = 'Reverse';
+      timelineCounter = 0;
+      break;
+  }
+});

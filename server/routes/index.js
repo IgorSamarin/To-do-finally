@@ -8,6 +8,8 @@ module.exports = (app) => {
   );
   app.post('/api', taskItemsController.create);
   app.get('/api', taskItemsController.list);
+  app.get('/api/done', taskItemsController.list);
+  app.get('/api/undone', taskItemsController.list);
   app.get('/api/:id',taskItemsController.retrieve)
   app.put('/api/:id',taskItemsController.update)
   app.delete('/api/:id',taskItemsController.destroy)
