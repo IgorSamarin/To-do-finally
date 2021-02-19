@@ -11,27 +11,37 @@ module.exports = {
   },
   list(req, res) {
     if (req.path == '/api') {
-      return TaskItem.findAll({ raw: true })
+      // query string express
+      // sequelize queries
+      return TaskItem.findAll({
+        order: [['createdAt', 'DESC']],
+      })
+        .then((tasks) => res.send(tasks))
+        .catch((error) => res.send(error));
+    } else if (req.path == '/api/reverse') {
+      return TaskItem.findAll({
+        order: [['createdAt']],
+      })
         .then((tasks) => res.send(tasks))
         .catch((error) => res.send(error));
     } else if (req.path == '/api/done') {
-      return TaskItem.findAll({ raw: true }).then((tasks) => {
-        let tasksDone = tasks.filter((task) => {
-          if (task.complete) {
-            return task;
-          }
-        });
-        res.send(tasksDone);
-      });
+      return TaskItem.findAll({
+        where: {
+          complete: 'true',
+        },
+        order: [['createdAt', 'DESC']],
+      })
+        .then((tasks) => res.send(tasks))
+        .catch((error) => res.send(error));
     } else if (req.path == '/api/undone') {
-      return TaskItem.findAll({ raw: true }).then((tasks) => {
-        let tasksDone = tasks.filter((task) => {
-          if (!task.complete) {
-            return task;
-          }
-        });
-        res.send(tasksDone);
-      });
+      return TaskItem.findAll({
+        where: {
+          complete: 'false',
+        },
+        order: [['createdAt', 'DESC']],
+      })
+        .then((tasks) => res.send(tasks))
+        .catch((error) => res.send(error));
     }
   },
   retrieve(req, res) {

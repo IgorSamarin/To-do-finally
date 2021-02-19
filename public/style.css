@@ -75,6 +75,15 @@ body form button::before {
   width: 1px;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.61);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+body form button:hover::before {
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
 }
 
 body .filterBtns {
@@ -151,7 +160,7 @@ body #taskList .task {
 }
 
 body #taskList .task.complete {
-  background-color: #0c1b192b;
+  background-color: #0527293a;
 }
 
 body #taskList .task.complete span {

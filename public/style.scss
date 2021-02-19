@@ -60,6 +60,12 @@ body {
         width: 1px;
         height: 100%;
         background-color: rgba(255, 255, 255, 0.61);
+        transition: 0.2s;
+        transform-origin: top;
+      }
+      &:hover::before{
+        transform: rotate(20deg);
+        
       }
     }
   }
@@ -117,7 +123,7 @@ body {
 
     .task {
       &.complete {
-        background-color: #0c1b192b;
+        background-color: #0527293a;
         span {
           text-decoration: line-through;
         }

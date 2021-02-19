@@ -38,6 +38,17 @@ async function GetItems() {
   }
 }
 GetItems();
+async function GetReverseItems() {
+  taskList.innerHTML = '';
+  const response = await fetch('/api/reverse', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (response.ok === true) {
+    const tasks = await response.json();
+    createTasks(tasks);
+  }
+}
 async function GetDoneTasks() {
   taskList.innerHTML = '';
   const response = await fetch('/api/done', {
@@ -162,9 +173,11 @@ btnTimeline.addEventListener('click', () => {
   switch (timelineCounter) {
     case 1:
       btnTimeline.innerText = 'Normal';
+      GetItems()
       break;
     case 2:
       btnTimeline.innerText = 'Reverse';
+      GetReverseItems()
       timelineCounter = 0;
       break;
   }
