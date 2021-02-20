@@ -1,3 +1,8 @@
+
+
+
+
+
 async function DeleteTask(id) {
   const response = await fetch(`/api/${id}`, {
     method: 'DELETE',
@@ -7,6 +12,6 @@ async function DeleteTask(id) {
     
     setTimeout(() => {
       GetItems();
-    }, 1000);
+    }, 200);
   }
 }

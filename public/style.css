@@ -190,6 +190,14 @@ body #taskList .task.complete span {
   text-decoration: line-through;
 }
 
+body #taskList .task.animateDelete {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform: translateX(-200px);
+          transform: translateX(-200px);
+  opacity: 0;
+}
+
 body #taskList .task span {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;

@@ -79,19 +79,34 @@ module.exports = {
       })
       .catch((err) => res.status(400).send(err));
   },
-  destroy(req, res) {
-    return TaskItem.findByPk(req.params.id)
-      .then((task) => {
-        if (!task) {
-          return res.status(404).send({
-            message: 'Item Not Found',
-          });
-        }
-        return task
-          .destroy()
-          .then(() => res.status(204).send())
-          .catch((error) => res.status(204).send(error));
-      })
-      .catch((error) => res.status(400).send(error));
-  },
+  // destroy(req, res) {
+  //   return TaskItem.findByPk(req.params.id)
+  //     .then((task) => {
+  //       if (!task) {
+  //         return res.status(404).send({
+  //           message: 'Item Not Found',
+  //         });
+  //       }
+  //       return task
+  //         .destroy()
+  //         .then(() => res.status(204).send())
+  //         .catch((error) => res.status(204).send(error));
+  //     })
+  //     .catch((error) => res.status(400).send(error));
+  // },
+  destroy:async(req,res) =>{
+    try {
+      const task = await TaskItem.findByPk(req.params.id);
+      if(!task){
+        return res.status(404).send({
+          message:'Item Not Found!'
+
+        })
+      }
+      task.destroy();
+      res.status(204).send();
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  }
 };
