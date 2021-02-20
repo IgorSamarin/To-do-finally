@@ -17,17 +17,43 @@ btnState.addEventListener('click', () => {
       break;
   }
 });
+
 let timelineCounter = 1;
 btnTimeline.addEventListener('click', () => {
   timelineCounter++;
   switch (timelineCounter) {
     case 1:
       btnTimeline.innerText = 'Normal';
-      GetItems()
+      // GetItems();
+      switch (stateCounter) {
+        case 1:
+          GetItems();
+          break;
+        case 2:
+          GetDoneTasks();
+          break;
+        case 0:
+          GetUndoneTasks();
+          break;
+      }
       break;
     case 2:
       btnTimeline.innerText = 'Reverse';
-      GetReverseItems()
+      // GetReverseItems();
+      switch (stateCounter) {
+        case 1:
+          GetReverseItems();
+          // GetItems();
+          break;
+        case 2:
+          GetReverseDone();
+          // GetReverseItemsDone()
+          break;
+        case 0:
+          GetReverseUndone()
+          // GetReverseItemsUndone()
+          break;
+      }
       timelineCounter = 0;
       break;
   }

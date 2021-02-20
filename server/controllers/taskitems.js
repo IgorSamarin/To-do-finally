@@ -8,6 +8,8 @@ const undoneTask = require('./taskitems/task.undone');
 const retrieveTask = require('./taskitems/task.retrieve');
 const updateTask = require('./taskitems/task.update');
 const deleteTask = require('./taskitems/task.delete');
+const reverseDoneTask = require('./taskitems/task.reverseDone');
+const reverseUndoneTask = require('./taskitems/task.reverseUndone');
 
 module.exports = {
   createTask,
@@ -18,4 +20,6 @@ module.exports = {
   retrieveTask,
   updateTask,
   deleteTask,
+  reverseDoneTask,
+  reverseUndoneTask,
 };

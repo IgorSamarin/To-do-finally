@@ -1,4 +1,3 @@
-
 async function TaskDone(classes, id) {
   let completed = classes.value.includes('complete');
   const response = await fetch(`/api/${id}`, {
@@ -7,10 +6,16 @@ async function TaskDone(classes, id) {
     body: JSON.stringify({ complete: !completed }),
   });
   if (response.ok === true) {
-    GetItems();
+    switch (stateCounter) {
+      case 1:
+        GetItems();
+        break;
+      case 2:
+        GetDoneTasks();
+        break;
+      case 0:
+        GetUndoneTasks();
+        break;
+    }
   }
 }
-
-
-
-

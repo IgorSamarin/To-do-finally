@@ -16,6 +16,16 @@
           body: JSON.stringify({ text: taskText }),
         });
         if (response.ok === true) {
-          GetItems();
+          switch (stateCounter) {
+            case 1:
+              GetItems();
+              break;
+            case 2:
+              GetDoneTasks();
+              break;
+            case 0:
+              GetUndoneTasks();
+              break;
+          }
         }
       }

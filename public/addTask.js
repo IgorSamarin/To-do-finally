@@ -16,6 +16,35 @@ taskForm.addEventListener('submit', () => {
     });
     if (response.ok === true) {
       const task = await response.json();
-      GetItems();
+      console.log(timelineCounter);
+      switch (timelineCounter) {
+        case 1:
+          switch (stateCounter) {
+            case 1:
+              GetItems();
+              break;
+            case 2:
+              GetDoneTasks();
+              break;
+            case 0:
+              GetUndoneTasks();
+              break;
+          }
+          break;
+        case 0:
+          switch (stateCounter) {
+            case 1:
+              GetReverseItems();
+              break;
+            case 2:
+              GetReverseDone();
+              break;
+            case 0:
+              GetReverseUndone()
+              break;
+          }
+          timelineCounter = 0;
+          break;
+      }
     }
   }

@@ -9,6 +9,11 @@ module.exports = (app) => {
   app.post('/api', taskItemsController.createTask.create);
   app.get('/api', taskItemsController.listTask.list);
   app.get('/api/reverse', taskItemsController.reverseTask.listReverse);
+
+  app.get('/api/reversedone', taskItemsController.reverseDoneTask.listReverseDone);
+  app.get('/api/reverseundone', taskItemsController.reverseUndoneTask.listReverseUndone);
+
+
   app.get('/api/done', taskItemsController.doneTask.listDone);
   app.get('/api/undone', taskItemsController.undoneTask.listUndone);
   app.get('/api/:id', taskItemsController.retrieveTask.retrieve);

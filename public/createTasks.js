@@ -14,7 +14,7 @@ const createTasks = (tasks) => {
     taskLi.innerHTML += btnDone;
     taskList.prepend(taskLi);
     taskLi.querySelector('.btnDelete').addEventListener('click', (event) => {
-      taskLi.classList.add('animateDelete')
+      taskLi.classList.add('animateDelete');
       DeleteTask(event.currentTarget.parentElement.getAttribute('data-id'));
     });
     taskLi.querySelector('.btnDone').addEventListener('click', (event) => {
