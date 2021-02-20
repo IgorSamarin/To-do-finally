@@ -1,47 +1,64 @@
 const TaskItem = require('../models').TaskItem;
 
 module.exports = {
-  create(req, res) {
-    return TaskItem.create({
-      text: req.body.text,
-      complete: false,
-    })
-      .then((todoItem) => res.status(201).send(todoItem))
-      .catch((error) => res.status(400).send(error));
+  create:async (req,res)=>{
+    try {
+      if (!req.body) throw new Error(400);
+      if (!req.body.text) throw new Error(400);
+      const task = await TaskItem.create({
+        text: req.body.text,
+        complete: false,
+      });
+      res.status(201).send(task);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  
   },
-  list(req, res) {
-    if (req.path == '/api') {
-      // query string express
-      // sequelize queries
-      return TaskItem.findAll({
+  list: async (req, res) => {
+    try {
+      const tasks = await TaskItem.findAll({
         order: [['createdAt', 'DESC']],
-      })
-        .then((tasks) => res.send(tasks))
-        .catch((error) => res.send(error));
-    } else if (req.path == '/api/reverse') {
-      return TaskItem.findAll({
+      });
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+  listReverse: async (req, res) => {
+    try {
+      const tasks = await TaskItem.findAll({
         order: [['createdAt']],
-      })
-        .then((tasks) => res.send(tasks))
-        .catch((error) => res.send(error));
-    } else if (req.path == '/api/done') {
-      return TaskItem.findAll({
+      });
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+  listDone: async (req, res) => {
+    try {
+      const tasks = await TaskItem.findAll({
         where: {
           complete: 'true',
         },
         order: [['createdAt', 'DESC']],
-      })
-        .then((tasks) => res.send(tasks))
-        .catch((error) => res.send(error));
-    } else if (req.path == '/api/undone') {
-      return TaskItem.findAll({
+      });
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  },
+  listUndone: async (req, res) => {
+    try {
+      const tasks = await TaskItem.findAll({
         where: {
           complete: 'false',
         },
         order: [['createdAt', 'DESC']],
-      })
-        .then((tasks) => res.send(tasks))
-        .catch((error) => res.send(error));
+      });
+      res.status(200).send(tasks);
+    } catch (err) {
+      res.status(400).send(err);
     }
   },
   retrieve: async (req, res) => {
@@ -57,7 +74,6 @@ module.exports = {
       res.status(400).send(err.message);
     }
   },
-
   update: async (req, res) => {
     try {
       const task = await TaskItem.findByPk(req.params.id);
@@ -81,7 +97,6 @@ module.exports = {
       res.status(400).send(err.message);
     }
   },
-
   destroy: async (req, res) => {
     try {
       const task = await TaskItem.findByPk(req.params.id);
