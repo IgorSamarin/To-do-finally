@@ -1,7 +1,7 @@
 
   const editForm = document.createElement('form');
   editForm.setAttribute('onsubmit', 'editText()');
-  editForm.innerHTML = '<input type="text">';
+  editForm.innerHTML = '<input type="text" autofocus>';
   function editText() {
     event.preventDefault();
     TaskEdit(

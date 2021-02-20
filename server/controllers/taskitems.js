@@ -44,69 +44,56 @@ module.exports = {
         .catch((error) => res.send(error));
     }
   },
-  retrieve(req, res) {
-    return TaskItem.findByPk(req.params.id)
-      .then((todo) => {
-        if (!todo) {
-          return res.status(404).send({
-            message: 'Todo Not Found',
-          });
-        }
-        return res.status(200).send(todo);
-      })
-      .catch((error) => res.status(400).send(error));
+  retrieve: async (req, res) => {
+    try {
+      const task = TaskItem.findByPk(req.params.id);
+      if (!task) {
+        return res.status(404).send({
+          message: 'Item Not Found!',
+        });
+      }
+      res.status(200).send(task);
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
   },
-  update(req, res) {
-    return TaskItem.findByPk(req.params.id)
-      .then((task) => {
-        if (!task) {
-          return res.status(404).send({
-            message: 'Item Not Found',
-          });
-        }
-        return task
-          .update({
-            text: req.body.text || task.text,
-            complete:
-              req.body.complete === undefined
-                ? task.complete
-                : req.body.complete,
-          })
-          .then((updatedTaskItem) => {
-            res.status(200).send(updatedTaskItem);
-          })
-          .catch((err) => res.status(400).send(err));
-      })
-      .catch((err) => res.status(400).send(err));
-  },
-  // destroy(req, res) {
-  //   return TaskItem.findByPk(req.params.id)
-  //     .then((task) => {
-  //       if (!task) {
-  //         return res.status(404).send({
-  //           message: 'Item Not Found',
-  //         });
-  //       }
-  //       return task
-  //         .destroy()
-  //         .then(() => res.status(204).send())
-  //         .catch((error) => res.status(204).send(error));
-  //     })
-  //     .catch((error) => res.status(400).send(error));
-  // },
-  destroy:async(req,res) =>{
+
+  update: async (req, res) => {
     try {
       const task = await TaskItem.findByPk(req.params.id);
-      if(!task){
+      if (!task) {
         return res.status(404).send({
-          message:'Item Not Found!'
+          message: 'Item Not Found',
+        });
+      }
+      if (!req.body.text && req.body.complete === undefined) {
+        return res.status(400).send({
+          message: 'Invalid Request Body',
+        });
+      }
+      task.update({
+        text: req.body.text || task.text,
+        complete:
+          req.body.complete === undefined ? task.complete : req.body.complete,
+      });
+      res.status(200).send(task);
+    } catch (err) {
+      res.status(400).send(err.message);
+    }
+  },
 
-        })
+  destroy: async (req, res) => {
+    try {
+      const task = await TaskItem.findByPk(req.params.id);
+      if (!task) {
+        return res.status(404).send({
+          message: 'Item Not Found!',
+        });
       }
       task.destroy();
       res.status(204).send();
     } catch (err) {
       res.status(400).send(err.message);
     }
-  }
+  },
 };
