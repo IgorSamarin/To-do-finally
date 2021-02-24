@@ -77,10 +77,12 @@ body {
       &:hover::before {
         transform: rotate(180deg + 90deg);
         height: 60%;
+        width: 2px;
         top: calc((100% / 2) - 30%);
       }
       &:hover::after {
-        transform: rotate(180deg + 180deg);
+        width: 2px;
+        transform: rotate(180deg);
         height: 60%;
         top: calc((100% / 2) - 30%);
       }
@@ -146,7 +148,7 @@ body {
       }
       &.animateDelete {
         transition: 0.2s;
-        transform: translateX(-200px);
+        transform: translateX(-50px);
         opacity: 0;
       }
       padding: 5px;
@@ -170,6 +172,7 @@ body {
         padding: 0px 20px;
         position: relative;
         cursor: pointer;
+        align-self: flex-start;
         &::before {
           content: '';
           position: absolute;

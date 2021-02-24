@@ -15,10 +15,10 @@ const listAll = async (req, res) => {
     let reqChronology;
     switch (req.query.chronology) {
       case 'normal':
-        reqChronology = [['updatedAt']];
+        reqChronology = [['createdAt']];
         break;
       case 'reverse':
-        reqChronology = [['updatedAt', 'DESC']];
+        reqChronology = [['createdAt', 'DESC']];
         break;
       default:
         return res.status(400).send({
@@ -41,10 +41,10 @@ const listFilter = async (req, res) => {
     let reqChronology;
     switch (req.query.chronology) {
       case 'normal':
-        reqChronology = [['updatedAt']];
+        reqChronology = [['createdAt']];
         break;
       case 'reverse':
-        reqChronology = [['updatedAt', 'DESC']];
+        reqChronology = [['createdAt', 'DESC']];
         break;
       default:
         return res.status(400).send({

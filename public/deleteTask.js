@@ -8,7 +8,6 @@ async function DeleteTask(id) {
     
     setTimeout(() => {
       GetItems(chronologyFlag, completeFlag)
-
     }, 200);
   }
 }
