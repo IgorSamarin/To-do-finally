@@ -4,12 +4,27 @@ module.exports = (app) => {
       message: 'Welcome to the Todos API!',
     })
   );
+  const klawSync = require('klaw-sync');
+  const path = require('path');
+  async function useControllers() {
+    const paths = klawSync(
+      path.resolve('server/controllers/tasks'),
+      { nodir: true, }
+      );
+    let controllersCount = 0;
+    paths.forEach((file) => {
+      if (
+        path.basename(file.path)[0] === '_' ||
+        path.basename(file.path)[0] === '.'
+      )
+        return;
+      app.use('/api', require(file.path));
+      controllersCount++;
+    });
 
-  const getTasks = require('./../controllers/taskitems/tasks.get');
-  const getTask = require('./../controllers/taskitems/task.get');
-  const postTask = require('./../controllers/taskitems/task.post');
-  const putTask = require('./../controllers/taskitems/task.put');
-  const deleteTask = require('./../controllers/taskitems/task.delete');
+    console.info(`Total controllers: ${controllersCount}`);
+  }
 
-  app.use('/api', getTasks, putTask, postTask, deleteTask, getTask);
+  useControllers();
+  
 };

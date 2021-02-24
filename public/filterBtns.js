@@ -2,7 +2,6 @@ let stateCounter = 1;
 let completeFlag = 'all';
 btnState.addEventListener('click', () => {
   stateCounter++;
-
   switch (stateCounter) {
     case 1:
       btnState.innerText = 'All';
