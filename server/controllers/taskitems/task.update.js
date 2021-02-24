@@ -14,7 +14,7 @@ module.exports = {
           message: 'Invalid Request Body',
         });
       }
-      task.update({
+      await task.update({
         text: req.body.text || task.text,
         complete:
           req.body.complete === undefined ? task.complete : req.body.complete,
