@@ -7,17 +7,8 @@ async function DeleteTask(id) {
   if (response.ok === true) {
     
     setTimeout(() => {
-      switch (stateCounter) {
-        case 1:
-          GetItems();
-          break;
-        case 2:
-          GetDoneTasks();
-          break;
-        case 0:
-          GetUndoneTasks();
-          break;
-      }
+      GetItems(chronologyFlag, completeFlag)
+
     }, 200);
   }
 }
