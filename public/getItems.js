@@ -1,19 +1,23 @@
 async function GetItems(chronologyFlag, completeFlag) {
-  taskList.innerHTML = '';
-  const response = await fetch(
-    '/api?' +
-      new URLSearchParams({
-        chronology: chronologyFlag,
-        complete: completeFlag,
-      }),
-    {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+  try {
+    taskList.innerHTML = '';
+    let queryString = {
+      chronology: chronologyFlag,
+    };
+    if (completeFlag != 'all') queryString.complete = completeFlag;
+    const response = await fetch(
+      '/api?' + new URLSearchParams( queryString ),
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    if (response.ok === true) {
+      const tasks = await response.json();
+      createTasks(tasks);
     }
-  );
-  if (response.ok === true) {
-    const tasks = await response.json();
-    createTasks(tasks);
+  } catch (err) {
+    console.log(error.message);
   }
 }
 GetItems(chronologyFlag, completeFlag);
