@@ -16,7 +16,6 @@ taskForm.addEventListener('submit', () => {
     });
     if (response.ok === true) {
       const task = await response.json();
-      console.log(timelineCounter);
       switch (timelineCounter) {
         case 1:
           switch (stateCounter) {
