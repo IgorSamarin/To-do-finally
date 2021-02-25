@@ -1,4 +1,4 @@
-const TaskItem = require('../../models').TaskItem;
+const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.get('', async (req, res) => {
           ? { complete: true }
           : { complete: false };
 
-    const result = await TaskItem.findAll(filter);
+    const result = await Task.findAll(filter);
     res.status(200).send(result);
   } catch (error) {
     res.status(400).send(error.message);

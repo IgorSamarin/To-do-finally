@@ -1,4 +1,4 @@
-const TaskItem = require('../../models').TaskItem;
+const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.put('/:id', async (req, res) => {
           message: 'Invalid Request Body',
         });
       }
-      const todoTask = await TaskItem.findByPk(req.params.id);
+      const todoTask = await Task.findByPk(req.params.id);
       if (!todoTask) {
         return res.status(404).send({
           message: 'Item Not Found',

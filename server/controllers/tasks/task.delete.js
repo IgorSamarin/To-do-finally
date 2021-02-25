@@ -1,17 +1,17 @@
-const TaskItem = require('../../models').TaskItem;
+const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const task = await TaskItem.findByPk(id);
+    const task = await Task.findByPk(id);
     if (!task) {
       return res.status(404).send({
         message: 'Item Not Found!',
       });
     }
-    const todoTask = await TaskItem.destroy({ where: { id } });
+    const todoTask = await Task.destroy({ where: { id } });
     if (!todoTask) {
       return res.status(404).send({
         message: 'Item Not Found',

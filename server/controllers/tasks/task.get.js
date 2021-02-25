@@ -1,9 +1,9 @@
-const TaskItem = require('../../models').TaskItem;
+const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 router.get('/:id', async (req, res) => {
   try {
-    const task = TaskItem.findByPk(req.params.id);
+    const task = Task.findByPk(req.params.id);
     if (!task) {
       return res.status(404).send({
         message: 'Item Not Found!',
