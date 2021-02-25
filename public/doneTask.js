@@ -6,6 +6,7 @@ async function TaskDone(classes, id) {
     body: JSON.stringify({ complete: !completed }),
   });
   if (response.ok === true) {
-    GetItems(chronologyFlag, completeFlag)
+    checkFilters();
+
   }
 }

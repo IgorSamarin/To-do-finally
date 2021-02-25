@@ -16,6 +16,6 @@ async function AddTask(taskText) {
   });
   if (response.ok === true) {
     const task = await response.json();
-    GetItems(chronologyFlag, completeFlag);
+    checkFilters();
   }
 }

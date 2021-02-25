@@ -1,40 +1,52 @@
-let stateCounter = 1;
-let completeFlag = 'all';
-btnState.addEventListener('click', () => {
-  stateCounter++;
-  switch (stateCounter) {
-    case 1:
-      btnState.innerText = 'All';
-      completeFlag = 'all';
-      break;
-    case 2:
-      btnState.innerText = 'Done';
-      completeFlag = 'true';
-      break;
-    case 3:
-      btnState.innerText = 'Undone';
-      completeFlag = 'false';
-      stateCounter = 0;
-      break;
-  }
-  GetItems(chronologyFlag, completeFlag);
+const orderButtons = [...document.querySelectorAll("input[name=order]")];
+
+const completenessButtons = [
+  ...document.querySelectorAll("input[name=completeness]"),
+];
+
+[...orderButtons, ...completenessButtons].forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.name === "order") {
+      if (orderButtons.indexOf(button) === orderButtons.length - 1) {
+        clearAll(orderButtons);
+        orderButtons[0].checked = true;
+      } else {
+        clearAll(orderButtons);
+        orderButtons[orderButtons.indexOf(button) + 1].checked = true;
+      }
+    }
+    if (button.name === "completeness") {
+      if (
+        completenessButtons.indexOf(button) ===
+        completenessButtons.length - 1
+      ) {
+        clearAll(completenessButtons);
+        completenessButtons[0].checked = true;
+      } else {
+        clearAll(completenessButtons);
+        completenessButtons[
+          completenessButtons.indexOf(button) + 1
+        ].checked = true;
+      }
+    }
+    checkFilters();
+  });
 });
 
-let timelineCounter = 1;
-let chronologyFlag = 'normal';
-btnTimeline.addEventListener('click', () => {
-  timelineCounter++;
+const clearAll = (array) => {
+  array.forEach((element) => {
+    element.checked = false;
+  });
+};
 
-  switch (timelineCounter) {
-    case 1:
-      btnTimeline.innerText = 'Normal';
-      chronologyFlag = 'normal';
-      break;
-    case 2:
-      btnTimeline.innerText = 'Reverse';
-      chronologyFlag = 'reverse';
-      timelineCounter = 0;
-      break;
-  }
-  GetItems(chronologyFlag, completeFlag);
-});
+const checkFilters = () => {
+  let filters = {};
+  [...orderButtons, ...completenessButtons].forEach((button) => {
+    if (button.checked) {
+      filters[button.name] = button.id;
+    }
+  });
+  GetItems(filters);
+};
+
+checkFilters()

@@ -7,7 +7,8 @@ async function DeleteTask(id) {
   if (response.ok === true) {
     
     setTimeout(() => {
-      GetItems(chronologyFlag, completeFlag)
+      checkFilters();
+
     }, 200);
   }
 }

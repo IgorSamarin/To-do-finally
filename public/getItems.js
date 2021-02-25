@@ -1,23 +1,21 @@
-async function GetItems(chronologyFlag, completeFlag) {
+async function GetItems(filters) {
   try {
     taskList.innerHTML = '';
     let queryString = {
-      chronology: chronologyFlag,
+      chronology: filters.order,
     };
-    if (completeFlag != 'all') queryString.complete = completeFlag;
-    const response = await fetch(
-      '/api?' + new URLSearchParams( queryString ),
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
+    if (filters.completeness != 'all')
+      queryString.complete = filters.completeness;
+    const response = await fetch('/api?' + new URLSearchParams(queryString), {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
     if (response.ok === true) {
       const tasks = await response.json();
       createTasks(tasks);
     }
   } catch (err) {
-    console.log(error.message);
+    console.log(err.message);
+    res.status(400).send(err.message);
   }
 }
-GetItems(chronologyFlag, completeFlag);

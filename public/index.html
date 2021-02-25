@@ -5,9 +5,9 @@
     <script defer src="./createTasks.js"></script>
     <script defer src="./variables.js"></script>
     <script defer src="./editTask.js"></script>
+    <script defer src="./getItems.js"></script>
     <script defer src="./filterBtns.js"></script>
     <script defer src="./addTask.js"></script>
-    <script defer src="./getItems.js"></script>
     <script defer src="./deleteTask.js"></script>
     <!-- <script defer src="./getReverseItems.js"></script> -->
     <!-- <script defer src="./getDoneTasks.js"></script> -->
@@ -24,17 +24,27 @@
     <title>To do</title>
   </head>
   <body>
-  
     <h1>To do list</h1>
-
     <form id="taskForm">
       <input type="text" />
       <button type="submit">Add</button>
     </form>
     <div class="filterBtns">
-      <div class="filterBtn" id="btnTimeline">Normal</div>
-      <div class="filterBtn" id="btnState">All</div>
-      <span></span>
+      <div class="orderArea">
+        <input type="radio" name="order" id="normal" checked />
+        <label for="normal">normal</label>
+        <input type="radio" name="order" id="reverse" />
+        <label for="reverse">reverse</label>
+      </div>
+  
+      <div class="completenessArea">
+        <input type="radio" name="completeness" id="all" checked />
+        <label for="all">all</label>
+        <input type="radio" name="completeness" id="true" />
+        <label for="true">done</label>
+        <input type="radio" name="completeness" id="false" />
+        <label for="false">undone</label>
+      </div>
     </div>
     <ul id="taskList">
       <!-- <li class="task">
