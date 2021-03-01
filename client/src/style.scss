@@ -153,11 +153,9 @@ body {
       span {
         flex-grow: 1;
       }
-      form {
-        padding: 0;
-        input {
-          padding: 0;
-        }
+      input{
+        width: 100%;
+        background-color: inherit;
       }
 
       .taskBtn {

@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+  border: none;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 25px;
+  color: rgba(255, 255, 255, 0.801);
+  background: linear-gradient(136deg, #000360 0%, #092f79 24%, #00d4ff 100%);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+body h1 {
+  text-align: center;
+  margin: 50px 0;
+}
+
+body form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.178);
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.61);
+  padding: 5px;
+}
+
+body form input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10px 20px;
+}
+
+body form button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+body form button::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #ffffff9c;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+body form button::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #ffffff9c;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+body form button:hover::before {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+  height: 60%;
+  width: 2px;
+  top: calc((100% / 2) - 30%);
+}
+
+body form button:hover::after {
+  width: 2px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  height: 60%;
+  top: calc((100% / 2) - 30%);
+}
+
+body .filterBtns {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .filterBtns .orderArea,
+body .filterBtns .completenessArea {
+  position: relative;
+  width: 100%;
+  margin: 50px auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+body .filterBtns .orderArea input,
+body .filterBtns .completenessArea input {
+  display: none;
+}
+
+body .filterBtns .orderArea label,
+body .filterBtns .completenessArea label {
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  width: 150px;
+  position: absolute;
+  top: calc((100% - 40px) / 2);
+  left: calc((100% - 200px) / 2);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+body .filterBtns .orderArea input:checked + label,
+body .filterBtns .completenessArea input:checked + label {
+  background-color: rgba(125, 204, 228, 0.2);
+  display: block;
+}
+
+body #taskList {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+body #taskList .task {
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+  background-color: rgba(255, 255, 255, 0.178);
+  border: 1px solid rgba(255, 255, 255, 0.61);
+  margin-top: 10px;
+}
+
+body #taskList .task.complete {
+  background-color: #0527293a;
+}
+
+body #taskList .task.complete span {
+  text-decoration: line-through;
+}
+
+body #taskList .task.animateDelete {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform: translateX(-50px);
+          transform: translateX(-50px);
+  opacity: 0;
+}
+
+body #taskList .task span {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+body #taskList .task input {
+  width: 100%;
+  background-color: inherit;
+}
+
+body #taskList .task .taskBtn {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0px 20px;
+  position: relative;
+  cursor: pointer;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+body #taskList .task .taskBtn::before {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.61);
+  top: calc((100% / 2) - 15%);
+  top: 0;
+  left: 0;
+}
+
+body #taskList .task .btnDelete {
+  margin-left: 5px;
+}
+/*# sourceMappingURL=style.css.map */
