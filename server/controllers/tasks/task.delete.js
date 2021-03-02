@@ -12,7 +12,7 @@ router.delete('/:id', async (req, res) => {
         message: 'Item Not Found',
       });
     }
-    res.status(204);
+    res.status(204).send();
   } catch (err) {
     res.status(500).send(err.message);
   }
