@@ -2,14 +2,22 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:7000/api';
 
-export const GetTasks = async () => {
+export const GetTasks = async (filters) => {
   try {
-    const result = await axios.get(apiUrl, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache',
-      },
-    });
+    let queryString = {
+      chronology: filters.chronology,
+    };
+    if (filters.complete != 'all') queryString.complete = filters.complete;
+
+    const result = await axios.get(
+      `${apiUrl}?` + new URLSearchParams(queryString),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+        },
+      }
+    );
     return result.data;
   } catch (e) {
     console.log(e.message);
@@ -54,4 +62,3 @@ export const EditTask = async (id, text) => {
     console.log(e.message);
   }
 };
-

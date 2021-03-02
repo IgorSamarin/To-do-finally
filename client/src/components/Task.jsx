@@ -2,25 +2,30 @@ import React, { useState } from 'react';
 
 export default function Task(props) {
   const [editMode, setMode] = useState(false);
+  const [newText, setNewText] = useState(props.text);
+  const toggleEditMode = () => {
+    if (editMode && newText) {
+      editTask(newText);
+    }
+    setMode(!editMode);
+  };
 
   const activateEditMode = () => {
     setMode(true);
   };
-  const toggleEditMode = () => {
-    setMode(!editMode);
-  };
   const deactivateEditMode = (e) => {
     setMode(false);
-    editTask(e.target.value)
+    if (newText) {
+      editTask(newText);
+    }
   };
-  const deleteTask = (e) => {
+  const deleteTask = () => {
     props.callDeleteTasks(props.id);
   };
-  const doneTasks = (e) => {
+  const doneTasks = () => {
     props.callDoneTasks(props.id, !props.complete);
   };
   const editTask = (text) => {
-    console.log(props.text);
     props.callEditTasks(props.id, text);
   };
 
@@ -28,11 +33,15 @@ export default function Task(props) {
     <li className={`task ${props.addClassDone}`}>
       {editMode && (
         <input
-        onKeyDown={event=>{if(event.code ==='Enter')deactivateEditMode(event)}}
-        autoFocus={true}
-          onBlur={(event) => {
-            deactivateEditMode(event);
+          onChange={(event) => setNewText(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.code === 'Enter') deactivateEditMode(event);
           }}
+          defaultValue={props.text}
+          autoFocus={true}
+          // onBlur={(event) => {
+          //   deactivateEditMode(event);
+          // }}
           type='text'
         />
       )}
@@ -49,7 +58,10 @@ export default function Task(props) {
         Delete
       </button>
 
-      <button onClick={toggleEditMode} className='btnEdit taskBtn'>
+      <button
+        onClick={(event) => toggleEditMode(event)}
+        className='btnEdit taskBtn'
+      >
         Edit
       </button>
 

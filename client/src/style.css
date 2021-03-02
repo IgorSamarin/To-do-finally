@@ -115,50 +115,35 @@ body .filterBtns {
   width: 80%;
   max-width: 800px;
   margin: 0 auto;
+  margin-top: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-body .filterBtns .orderArea,
-body .filterBtns .completenessArea {
-  position: relative;
-  width: 100%;
-  margin: 50px auto;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-body .filterBtns .orderArea input,
-body .filterBtns .completenessArea input {
+body .filterBtns input {
   display: none;
 }
 
-body .filterBtns .orderArea label,
-body .filterBtns .completenessArea label {
+body .filterBtns input:checked + label {
+  background-color: rgba(12, 124, 158, 0.938);
+}
+
+body .filterBtns label {
+  background-color: rgba(255, 255, 255, 0.178);
   color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.8);
-  display: none;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   text-align: center;
-  padding: 10px;
-  width: 150px;
-  position: absolute;
-  top: calc((100% - 40px) / 2);
-  left: calc((100% - 200px) / 2);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-body .filterBtns .orderArea input:checked + label,
-body .filterBtns .completenessArea input:checked + label {
-  background-color: rgba(125, 204, 228, 0.2);
-  display: block;
+  padding: 10px 0;
+  width: 140px;
 }
 
 body #taskList {

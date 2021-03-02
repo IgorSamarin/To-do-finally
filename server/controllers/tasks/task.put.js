@@ -5,7 +5,6 @@ const router = express.Router();
 
  
 router.put('/:id', async (req, res) => {
-  console.log(req.body);
     try {
       const task = req.body;
       if (!task.text && task.complete === undefined) {

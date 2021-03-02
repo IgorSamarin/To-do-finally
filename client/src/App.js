@@ -12,34 +12,45 @@ import {
 } from './AxiosRequest';
 
 function App() {
+  const [filters, setFilters] = useState({
+    chronology: 'normal',
+    complete: 'all',
+  });
   const [appState, setAppState] = useState([]);
+  
 
   const callPostTasks = async (text) => {
     await PostTask(text);
-    setAppState(await GetTasks());
+    setAppState(await GetTasks(filters));
   };
   const callDeleteTasks = async (id) => {
     await DeleteTask(id);
-    setAppState(await GetTasks());
+    setAppState(await GetTasks(filters));
   };
   const callDoneTasks = async (id, complete) => {
     await DoneTask(id, complete);
-    setAppState(await GetTasks());
+    setAppState(await GetTasks(filters));
   };
   const callEditTasks = async (id, taskText) => {
     await EditTask(id, taskText);
-    setAppState(await GetTasks());
+    setAppState(await GetTasks(filters));
+  };
+  const updateFilters = (chronology, complete) => {
+    setFilters({
+      chronology: chronology,
+      complete: complete,
+    });
   };
 
   useEffect(async () => {
-    setAppState(await GetTasks());
-  }, [setAppState]);
+    setAppState(await GetTasks(filters));
+  }, [filters]);
 
   return (
     <div className='App'>
       <h1>To do list</h1>
       <Form callPostTasks={callPostTasks} />
-      <FilterBtns />
+      <FilterBtns updateFilters={updateFilters}/>
       <TaskList
         callEditTasks={callEditTasks}
         callDoneTasks={callDoneTasks}
