@@ -30,7 +30,7 @@ export default function FilterBtns(props) {
         id='reverse'
       />
       <label htmlFor='reverse'>reverse</label>
-
+      <hr />
       <input
         onChange={(event) => changeSetComplete(event)}
         type='radio'
@@ -54,5 +54,6 @@ export default function FilterBtns(props) {
       />
       <label htmlFor='false'>undone</label>
     </div>
+    
   );
 }
