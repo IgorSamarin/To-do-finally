@@ -4,8 +4,7 @@ const router = express.Router();
 
 router.post('', async (req, res) => {
   try {
-    if (!req.body) throw new Error(400);
-    if (!req.body.text) throw new Error(400);
+    if (!req.body  || !req.body.text) throw new Error(400);
     const task = await Task.create({
       text: req.body.text,
       complete: false,

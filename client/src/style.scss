@@ -5,7 +5,7 @@
   user-select: none;
 }
 button,
-input {
+input,label {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -22,9 +22,9 @@ body {
   color: rgba(255, 255, 255, 0.801);
   background: linear-gradient(
     136deg,
-    rgba(0, 3, 96, 1) 0%,
-    rgba(9, 47, 121, 1) 24%,
-    rgba(0, 212, 255, 1) 100%
+    rgb(255, 208, 0) 0%,
+    rgb(184, 196, 11) 34%,
+    rgb(157, 255, 0) 100%
   );
   background-repeat: no-repeat;
   background-size: contain;
@@ -99,11 +99,15 @@ body {
     input {
       display: none;
       &:checked + label {
-        background-color: rgba(12, 124, 158, 0.938);
+        background-color: rgba(0, 255, 191, 0.274);
+        position: relative;
+        transition: 0.3s;
+       
       }
     }
     
     label {
+      
       background-color: rgba(255, 255, 255, 0.178);
       color: rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.8);

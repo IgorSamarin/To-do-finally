@@ -52,6 +52,7 @@ export const DoneTask = async (id, classes) => {
     console.log(e.message);
   }
 };
+
 export const EditTask = async (id, text) => {
   try {
     const result = await axios.put(`http://localhost:7000/api/${id}`, {

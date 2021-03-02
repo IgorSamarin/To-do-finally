@@ -10,7 +10,7 @@
 }
 
 button,
-input {
+input, label {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -22,7 +22,7 @@ body {
   font-family: sans-serif;
   font-size: 25px;
   color: rgba(255, 255, 255, 0.801);
-  background: linear-gradient(136deg, #000360 0%, #092f79 24%, #00d4ff 100%);
+  background: linear-gradient(136deg, #ffd000 0%, #b8c40b 34%, #9dff00 100%);
   background-repeat: no-repeat;
   background-size: contain;
   background-attachment: fixed;
@@ -129,7 +129,10 @@ body .filterBtns input {
 }
 
 body .filterBtns input:checked + label {
-  background-color: rgba(12, 124, 158, 0.938);
+  background-color: rgba(0, 255, 191, 0.274);
+  position: relative;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 body .filterBtns label {
