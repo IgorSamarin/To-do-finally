@@ -10,7 +10,8 @@
 }
 
 button,
-input, label {
+input,
+label {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -22,7 +23,7 @@ body {
   font-family: sans-serif;
   font-size: 25px;
   color: rgba(255, 255, 255, 0.801);
-  background: linear-gradient(136deg, #ffd000 0%, #b8c40b 34%, #9dff00 100%);
+  background: linear-gradient(136deg, #d69d00 0%, #aebb00 34%, #7ecc00 100%);
   background-repeat: no-repeat;
   background-size: contain;
   background-attachment: fixed;
@@ -129,10 +130,18 @@ body .filterBtns input {
 }
 
 body .filterBtns input:checked + label {
-  background-color: rgba(0, 255, 191, 0.274);
+  background-color: #0527293a;
   position: relative;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+body .filterBtns hr {
+  outline: none;
+  border: none;
+  width: 1px;
+  height: 50px;
+  background-color: white;
 }
 
 body .filterBtns label {
@@ -146,7 +155,9 @@ body .filterBtns label {
   cursor: pointer;
   text-align: center;
   padding: 10px 0;
-  width: 140px;
+  padding-bottom: 5px;
+  width: 18%;
+  position: relative;
 }
 
 body #taskList {
