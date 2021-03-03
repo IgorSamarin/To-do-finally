@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         req.query.complete === 'true'
           ? { complete: true }
           : { complete: false };
-
+console.log(filter);
     
 
     const result = await Task.findAll(filter);

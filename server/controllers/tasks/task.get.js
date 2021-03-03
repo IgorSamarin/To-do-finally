@@ -1,7 +1,7 @@
 const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const task = Task.findByPk(req.params.id);
     if (!task) {
