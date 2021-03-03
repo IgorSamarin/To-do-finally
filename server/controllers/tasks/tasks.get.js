@@ -2,7 +2,7 @@ const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
-router.get('', async (req, res) => {
+router.get('/user/:id/tasks', async (req, res) => {
   try {
     const filter = {
       order:

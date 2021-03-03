@@ -4,7 +4,7 @@ const router = express.Router();
 
 
  
-router.put('/:id', async (req, res) => {
+router.put('/user/:id/tasks', async (req, res) => {
     try {
       const task = req.body;
       if (!task.text && task.complete === undefined) {
