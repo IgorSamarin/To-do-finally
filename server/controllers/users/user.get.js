@@ -2,7 +2,7 @@ const Task = require('../../models').Task;
 const User = require('../../models').User;
 const express = require('express');
 const router = express.Router();
-router.get('/users/:id', async (req, res, next) => {
+router.get('/users/:id', async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await User.findOne({

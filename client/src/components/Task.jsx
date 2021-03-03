@@ -30,7 +30,7 @@ export default function Task(props) {
   };
 
   return (
-    <li className={`task ${props.addClassDone}`}>
+    <li  className={`task ${props.addClassDone}`}>
       {editMode && (
         <input
           onChange={(event) => setNewText(event.target.value)}

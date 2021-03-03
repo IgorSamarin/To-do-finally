@@ -11,6 +11,7 @@ export default function TaskList(props) {
           callDeleteTasks={props.callDeleteTasks}
           callEditTasks={props.callEditTasks}
           id={task.id}
+          key={task.id}
           text={task.text}
           complete={task.complete}
         />
@@ -23,6 +24,7 @@ export default function TaskList(props) {
           callDeleteTasks={props.callDeleteTasks}
           callEditTasks={props.callEditTasks}
           id={task.id}
+          key={task.id}
           text={task.text}
           complete={task.complete}
         />
