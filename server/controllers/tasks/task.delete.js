@@ -2,10 +2,9 @@ const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
-router.delete('/user/:id/tasks', async (req, res) => {
+router.delete('/', async (req, res) => {
   try {
     const { id } = req.params;
-
     const todoTask = await Task.destroy({ where: { id } });
     if (!todoTask) {
       return res.status(404).send({

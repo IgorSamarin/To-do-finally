@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 
- 
-router.put('/user/:id/tasks', async (req, res) => {
+// /user/:id/tasks
+router.put('/', async (req, res) => {
     try {
       const task = req.body;
       if (!task.text && task.complete === undefined) {

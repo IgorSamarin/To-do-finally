@@ -8,7 +8,7 @@ module.exports = (app) => {
   const path = require('path');
   async function useControllers() {
     const paths = klawSync(
-      path.resolve('server/controllers/tasks'),
+      path.resolve('server/controllers'),
       { nodir: true, }
       );
     let controllersCount = 0;

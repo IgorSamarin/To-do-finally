@@ -2,7 +2,7 @@ const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
-router.get('/user/:id/tasks', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const filter = {
       order:
@@ -15,6 +15,8 @@ router.get('/user/:id/tasks', async (req, res) => {
         req.query.complete === 'true'
           ? { complete: true }
           : { complete: false };
+
+    
 
     const result = await Task.findAll(filter);
     res.status(200).send(result);
