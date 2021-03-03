@@ -9,7 +9,7 @@ export default function Form(props) {
   };
 
   return (
-    <form onSubmit={(event) => submitForm(event)} id='taskForm'>
+    <form id="inputTask" onSubmit={(event) => submitForm(event)} id='taskForm'>
       <input
         type='text'
         onChange={(event) => {

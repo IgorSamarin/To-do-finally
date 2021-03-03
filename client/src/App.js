@@ -1,6 +1,8 @@
 import FilterBtns from './components/FilterBtns';
 import Form from './components/Form';
 import TaskList from './components/TaskList';
+import UserPanel from './components/UserPanel';
+
 import './style.css';
 import React, { useEffect, useState } from 'react';
 import {
@@ -12,12 +14,13 @@ import {
 } from './AxiosRequest';
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false);
+
   const [filters, setFilters] = useState({
     chronology: 'normal',
     complete: 'all',
   });
   const [appState, setAppState] = useState([]);
-  
 
   const callPostTasks = async (text) => {
     await PostTask(text);
@@ -46,17 +49,26 @@ function App() {
     setAppState(await GetTasks(filters));
   }, [filters]);
 
+  if (isAuth) {
+    return (
+      <div className='App'>
+        <h1>To do list</h1>
+        <Form callPostTasks={callPostTasks} />
+        <FilterBtns updateFilters={updateFilters} />
+        <TaskList
+          callEditTasks={callEditTasks}
+          callDoneTasks={callDoneTasks}
+          callDeleteTasks={callDeleteTasks}
+          tasks={appState}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className='App'>
       <h1>To do list</h1>
-      <Form callPostTasks={callPostTasks} />
-      <FilterBtns updateFilters={updateFilters}/>
-      <TaskList
-        callEditTasks={callEditTasks}
-        callDoneTasks={callDoneTasks}
-        callDeleteTasks={callDeleteTasks}
-        tasks={appState}
-      />
+      <UserPanel />
     </div>
   );
 }
