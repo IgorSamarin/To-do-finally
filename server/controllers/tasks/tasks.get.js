@@ -2,21 +2,22 @@ const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/user/:userId/tasks', async (req, res) => {
   try {
     const filter = {
       order:
         req.query.chronology === 'reverse'
           ? [['createdAt', 'DESC']]
           : [['createdAt']],
+      where: {
+        UserId: parseInt(req.params.userId),
+      },
     };
     if (req.query.complete)
       filter.where =
         req.query.complete === 'true'
           ? { complete: true }
           : { complete: false };
-console.log(filter);
-    
 
     const result = await Task.findAll(filter);
     res.status(200).send(result);
