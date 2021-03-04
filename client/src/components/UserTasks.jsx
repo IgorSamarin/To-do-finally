@@ -26,11 +26,11 @@ export default function UserTasks(props) {
     setAppState(await GetTasks(filters, props.UserId));
   };
   const callDoneTasks = async (id, complete) => {
-    await DoneTask(id, complete);
+    await DoneTask(id, complete, props.UserId);
     setAppState(await GetTasks(filters, props.UserId));
   };
   const callEditTasks = async (id, taskText) => {
-    await EditTask(id, taskText);
+    await EditTask(id, taskText, props.UserId);
     setAppState(await GetTasks(filters, props.UserId));
   };
   const updateFilters = (chronology, complete) => {

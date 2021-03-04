@@ -41,9 +41,9 @@ export const DeleteTask = async (id) => {
   }
 };
 
-export const DoneTask = async (id, classes) => {
+export const DoneTask = async (id, classes,userId) => {
   try {
-    const result = await axios.put(`${apiUrl}/${id}`, {
+    const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
       complete: classes,
     });
     return result.data;
@@ -52,9 +52,9 @@ export const DoneTask = async (id, classes) => {
   }
 };
 
-export const EditTask = async (id, text) => {
+export const EditTask = async (id, text, userId) => {
   try {
-    const result = await axios.put(`${apiUrl}/${id}`, {
+    const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
       text: text,
     });
     return result.data;
