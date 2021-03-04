@@ -10,7 +10,7 @@ import FilterBtns from './FilterBtns';
 import Form from './Form';
 import TaskList from './TaskList';
 
-export default function UserTasks() {
+export default function UserTasks(props) {
   const [filters, setFilters] = useState({
     chronology: 'normal',
     complete: 'all',
@@ -18,20 +18,20 @@ export default function UserTasks() {
   const [appState, setAppState] = useState([]);
 
   const callPostTasks = async (text) => {
-    await PostTask(text);
-    setAppState(await GetTasks(filters));
+    await PostTask(text, props.UserId);
+    setAppState(await GetTasks(filters, props.UserId));
   };
   const callDeleteTasks = async (id) => {
     await DeleteTask(id);
-    setAppState(await GetTasks(filters));
+    setAppState(await GetTasks(filters, props.UserId));
   };
   const callDoneTasks = async (id, complete) => {
     await DoneTask(id, complete);
-    setAppState(await GetTasks(filters));
+    setAppState(await GetTasks(filters, props.UserId));
   };
   const callEditTasks = async (id, taskText) => {
     await EditTask(id, taskText);
-    setAppState(await GetTasks(filters));
+    setAppState(await GetTasks(filters, props.UserId));
   };
   const updateFilters = (chronology, complete) => {
     setFilters({
@@ -41,7 +41,7 @@ export default function UserTasks() {
   };
 
   useEffect(async () => {
-    setAppState(await GetTasks(filters));
+    setAppState(await GetTasks(filters, props.UserId));
   }, [filters]);
   return (
     <div>

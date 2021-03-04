@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
-export const GetTasks = async (filters) => {
+export const GetTasks = async (filters, userId) => {
   try {
     let queryString = {
       chronology: filters.chronology,
@@ -9,7 +9,7 @@ export const GetTasks = async (filters) => {
     if (filters.complete !== 'all') queryString.complete = filters.complete;
 
     const result = await axios.get(
-      `${apiUrl}?` + new URLSearchParams(queryString),
+      `${apiUrl}/user/${userId}/tasks?` + new URLSearchParams(queryString),
       {
         headers: {
           'Content-Type': 'application/json',
@@ -23,9 +23,9 @@ export const GetTasks = async (filters) => {
   }
 };
 
-export const PostTask = async (text) => {
+export const PostTask = async (text, userId) => {
   try {
-    const result = await axios.post(apiUrl, { text });
+    const result = await axios.post(`${apiUrl}/user/${userId}/tasks`, { text });
     return result.data;
   } catch (e) {
     console.log(e.message);

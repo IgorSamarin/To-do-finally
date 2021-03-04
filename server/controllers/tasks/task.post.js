@@ -2,12 +2,13 @@ const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/user/:userId/tasks', async (req, res) => {
   try {
     if (!req.body  || !req.body.text) throw new Error(400);
     const task = await Task.create({
       text: req.body.text,
       complete: false,
+      UserId: req.params.userId
     });
     res.status(201).send(task);
   } catch (err) {

@@ -21,7 +21,7 @@ function App() {
       <div className='App'>
         <h1> {user.username}'s To do list</h1>        
         <button id='signOut' onClick={event =>offIsAuth(event) } >Sign Out</button>
-        <UserTasks />
+        <UserTasks UserId={user.id}/>
       </div>
     );
   }
