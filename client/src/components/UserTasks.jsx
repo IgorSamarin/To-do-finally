@@ -22,7 +22,7 @@ export default function UserTasks(props) {
     setAppState(await GetTasks(filters, props.UserId));
   };
   const callDeleteTasks = async (id) => {
-    await DeleteTask(id);
+    await DeleteTask(id, props.UserId);
     setAppState(await GetTasks(filters, props.UserId));
   };
   const callDoneTasks = async (id, complete) => {
@@ -45,7 +45,6 @@ export default function UserTasks(props) {
   }, [filters]);
   return (
     <div>
-      
       <Form callPostTasks={callPostTasks} />
       <FilterBtns updateFilters={updateFilters} />
       <TaskList

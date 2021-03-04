@@ -32,16 +32,16 @@ export const PostTask = async (text, userId) => {
   }
 };
 
-export const DeleteTask = async (id) => {
+export const DeleteTask = async (id, userId) => {
   try {
-    const result = await axios.delete(`${apiUrl}/${id}`);
+    const result = await axios.delete(`${apiUrl}/user/${userId}/task/${id}`);
     return result.data;
   } catch (e) {
     console.log(e.message);
   }
 };
 
-export const DoneTask = async (id, classes,userId) => {
+export const DoneTask = async (id, classes, userId) => {
   try {
     const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
       complete: classes,
@@ -62,26 +62,25 @@ export const EditTask = async (id, text, userId) => {
     console.log(e.message);
   }
 };
-export const authentificationUser = async (username,password) => {
+export const authentificationUser = async (username, password) => {
   try {
     const result = await axios.post(`${apiUrl}/user/authentification`, {
       username,
       password,
     });
-    return result.data
+    return result.data;
   } catch (e) {
-    return e.response.data
+    return e.response.data;
   }
 };
-export const registrationUser = async (username,password) =>{
+export const registrationUser = async (username, password) => {
   try {
-    const result = await axios.post(`${apiUrl}/user/registration`,{
+    const result = await axios.post(`${apiUrl}/user/registration`, {
       username,
       password,
-    })
-    return result.data
+    });
+    return result.data;
   } catch (e) {
-    return e.response.data
-    
+    return e.response.data;
   }
-}
+};
