@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { authentificationUser } from '../AxiosRequest';
+import { registrationUser } from '../AxiosRequest';
 
 export default function UserPanel(props) {
   const [username, setUsername] = useState();
@@ -9,9 +10,20 @@ export default function UserPanel(props) {
     const result = await authentificationUser(username, password);
     if (result.message) {
       alert(result.message);
-    } else props.setIsAuth(true)
+    } else {
+      props.updateUser(result);
+      props.setIsAuth(true);
+    }
   };
-  const signUp = () => {};
+  const signUp = async () => {
+    const result = await registrationUser(username, password);
+    if (result.message) {
+      alert(result.message);
+    } else {
+      props.updateUser(result)
+      props.setIsAuth(true);
+    }
+  };
   return (
     <form onSubmit={(event) => event.preventDefault()} id='userPanel'>
       <input

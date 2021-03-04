@@ -108,6 +108,15 @@ body #userPanel button {
   background-color: rgba(255, 255, 255, 0.178);
 }
 
+body #signOut {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.178);
+}
+
 body #taskForm {
   display: -webkit-box;
   display: -ms-flexbox;

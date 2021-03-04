@@ -80,7 +80,6 @@ export const registrationUser = async (username,password) =>{
       password,
     })
     return result.data
-
   } catch (e) {
     return e.response.data
     

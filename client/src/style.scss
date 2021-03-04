@@ -12,13 +12,13 @@ label {
   color: inherit;
   outline: none;
   border: none;
-  &::placeholder{
+  &::placeholder {
     text-align: center;
     color: inherit;
     opacity: 0.5;
   }
 }
-button{
+button {
   cursor: pointer;
 }
 body {
@@ -67,6 +67,16 @@ body {
       background-color: rgba(255, 255, 255, 0.178);
     }
   }
+  
+    #signOut {
+      position: fixed;
+      top: 50px;
+      right: 20px;
+      padding: 10px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+     background-color: rgba(255, 255, 255, 0.178);
+    }
+  
   #taskForm {
     display: flex;
     background-color: rgba(255, 255, 255, 0.178);
