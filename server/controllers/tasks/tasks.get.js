@@ -16,8 +16,8 @@ router.get('/user/:userId/tasks', async (req, res) => {
     if (req.query.complete)
       filter.where =
         req.query.complete === 'true'
-          ? { complete: true }
-          : { complete: false };
+          ? { complete: true, UserId: parseInt(req.params.userId) }
+          : { complete: false, UserId: parseInt(req.params.userId) };
 
     const result = await Task.findAll(filter);
     res.status(200).send(result);
