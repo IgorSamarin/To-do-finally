@@ -18,7 +18,7 @@ router.post('/user/authentification', async (req, res) => {
     }
     const { password } = user;
     if (!bcrypt.compareSync(req.body.password, password)) {
-      return res.status(400).send('Invalid password');
+      return res.status(400).send({message: 'Invalid password'});
     }
     return res.status(200).send(user);
   } catch (err) {

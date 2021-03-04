@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
+import { authentificationUser } from '../AxiosRequest';
 
+export default function UserPanel(props) {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
 
-export default function UserPanel() {
-  // const [username, setUsername] = useState(props.user.username);
-  // const [password, setPassword] = useState(props.user.password);
+  const signIn = async () => {
+    const result = await authentificationUser(username, password);
+    if (result.message) {
+      alert(result.message);
+    } else props.setIsAuth(true)
+  };
+  const signUp = () => {};
   return (
-    <form id='userPanel'>
+    <form onSubmit={(event) => event.preventDefault()} id='userPanel'>
       <input
         id='userName'
-        
+        onChange={(event) => setUsername(event.target.value)}
         autoComplete='off'
         type='text'
         placeholder='username'
       />
       <input
         id='password'
+        onChange={(event) => setPassword(event.target.value)}
         autoComplete='off'
-        type='text'
+        type='password'
         placeholder='password'
       />
-      <button type='submit' id='signIn'>
+      <button onClick={signIn} id='signIn'>
         Sign IN
       </button>
-      <button type='submit' id='signUp'>
+      <button onClick={signUp} id='signUp'>
         Sign UP
       </button>
     </form>
