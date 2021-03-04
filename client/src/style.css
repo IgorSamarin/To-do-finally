@@ -80,8 +80,9 @@ body #userPanel {
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  width: 80%;
-  max-width: 800px;
+  width: 60%;
+  max-width: 500px;
+  min-width: 300px;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.178);
   border: 1px solid rgba(255, 255, 255, 0.801);
@@ -101,7 +102,7 @@ body #userPanel input {
 body #userPanel button {
   border: 1px solid rgba(255, 255, 255, 0.801);
   padding: 10px 0;
-  width: 50%;
+  width: 80%;
   -ms-grid-column-align: center;
       justify-self: center;
   background-color: rgba(255, 255, 255, 0.178);

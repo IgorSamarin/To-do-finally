@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 export default function UserPanel() {
-  const [username, setUsername] = useState(props.user.username);
-  const [password, setPassword] = useState(props.user.password);
+  // const [username, setUsername] = useState(props.user.username);
+  // const [password, setPassword] = useState(props.user.password);
   return (
     <form id='userPanel'>
       <input
