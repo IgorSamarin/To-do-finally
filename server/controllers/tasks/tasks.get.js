@@ -7,8 +7,8 @@ router.get('/user/:userId/tasks', async (req, res) => {
     const filter = {
       order:
         req.query.chronology === 'reverse'
-          ? [['createdAt', 'DESC']]
-          : [['createdAt']],
+          ? [['createdAt']]
+          : [['createdAt', 'DESC']],
       where: {
         UserId: parseInt(req.params.userId),
       },
