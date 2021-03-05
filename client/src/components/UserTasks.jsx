@@ -54,9 +54,18 @@ export default function UserTasks(props) {
     appState[appState.indexOf(taskToDone)].complete = result.complete;
   };
   const callEditTasks = async (id, taskText) => {
-    await EditTask(id, taskText, props.UserId);
-    setAppState(await GetTasks(filters, props.UserId));
+    const result = await EditTask(id, taskText, props.UserId);
+    if(result.status === 200){
+      const taskToEdit = appState.find((task) => {
+        if (task.id === result.data.id) {
+          return task;
+        }
+      });
+      appState[appState.indexOf(taskToEdit)].text = result.data.text;
+    }
+
   };
+
 
   const updateFilters = (chronology, complete) => {
     setFilters({

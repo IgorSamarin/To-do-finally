@@ -57,7 +57,7 @@ export const EditTask = async (id, text, userId) => {
     const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
       text: text,
     });
-    return result.data;
+    return result;
   } catch (e) {
     console.log(e.message);
   }
