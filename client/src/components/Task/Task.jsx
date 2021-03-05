@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import s from './style.task.module.css';
 
 export default function Task(props) {
   const [editMode, setMode] = useState(false);
   const [newText, setNewText] = useState(props.text);
+  const li = useRef();
   const toggleEditMode = () => {
     if (editMode && newText) {
       editTask(newText);
@@ -29,8 +31,16 @@ export default function Task(props) {
     props.callEditTasks(props.id, text);
   };
 
+  useEffect(() => {
+    if (props.addClassDone) {
+      li.current.classList.add(`${s.complete}`);
+    } else {
+      li.current.classList.remove(`${s.complete}`);
+    }
+  }, [props.addClassDone]);
+
   return (
-    <li  className={`task ${props.addClassDone}`}>
+    <li ref={li} className={`${s.task}`}>
       {editMode && (
         <input
           onChange={(event) => setNewText(event.target.value)}
@@ -51,21 +61,15 @@ export default function Task(props) {
         </span>
       )}
 
-      <button
-        onClick={(event) => deleteTask(event)}
-        className='btnDelete taskBtn'
-      >
+      <button onClick={(event) => deleteTask(event)} className={s.taskBtn}>
         Delete
       </button>
 
-      <button
-        onClick={(event) => toggleEditMode(event)}
-        className='btnEdit taskBtn'
-      >
+      <button onClick={(event) => toggleEditMode(event)} className={s.taskBtn}>
         Edit
       </button>
 
-      <button onClick={(event) => doneTasks(event)} className='btnDone taskBtn'>
+      <button onClick={(event) => doneTasks(event)} className={s.taskBtn}>
         Done
       </button>
     </li>

@@ -6,9 +6,9 @@ import {
   DoneTask,
   EditTask,
 } from '../AxiosRequest';
-import FilterBtns from './FilterBtns';
-import Form from './Form';
-import TaskList from './TaskList';
+import FilterBtns from './FilterBtns/FilterBtns';
+import Form from './Form/Form';
+import TaskList from './TaskList/TaskList';
 
 export default function UserTasks(props) {
   const [filters, setFilters] = useState({

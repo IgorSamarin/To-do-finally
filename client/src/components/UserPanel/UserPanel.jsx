@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { authentificationUser } from '../AxiosRequest';
-import { registrationUser } from '../AxiosRequest';
+import { authentificationUser } from '../../AxiosRequest';
+import { registrationUser } from '../../AxiosRequest';
+import s from './style.userPanel.module.css'
 
 export default function UserPanel(props) {
   const [username, setUsername] = useState();
@@ -25,7 +26,7 @@ export default function UserPanel(props) {
     }
   };
   return (
-    <form onSubmit={(event) => event.preventDefault()} id='userPanel'>
+    <form className={s.userPanel} onSubmit={(event) => event.preventDefault()} >
       <input
         id='userName'
         onChange={(event) => setUsername(event.target.value)}

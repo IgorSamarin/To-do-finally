@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import s from './style.form.module.css';
 
 export default function Form(props) {
   const [text, setText] = useState('');
   const submitForm = (e) => {
     e.preventDefault();
-    props.callPostTasks(text);
+    if (text !== '') {
+      props.callPostTasks(text);
+    }
+    setText('');
     e.target.reset();
   };
 
   return (
-    <form id="inputTask" onSubmit={(event) => submitForm(event)} id='taskForm'>
+    <form className={s.taskForm} onSubmit={(event) => submitForm(event)}>
       <input
         type='text'
         onChange={(event) => {

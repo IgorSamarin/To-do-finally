@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import s from './style.filterBtns.module.css'
 export default function FilterBtns(props) {
   const [chronology, setChronology] = useState('normal');
   const [complete, setComplete] = useState('all');
@@ -14,7 +14,7 @@ export default function FilterBtns(props) {
     props.updateFilters(chronology, complete);
   }, [chronology, complete]);
   return (
-    <div className='filterBtns'>
+    <div className={s.filterBtns}>
       <input
         onChange={(event) => changeSetChroology(event)}
         type='radio'

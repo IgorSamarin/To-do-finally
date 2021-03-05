@@ -1,4 +1,4 @@
-import UserPanel from './components/UserPanel';
+import UserPanel from './components/UserPanel/UserPanel';
 import './style.css';
 import React, { useEffect, useState } from 'react';
 import UserTasks from './components/UserTasks';

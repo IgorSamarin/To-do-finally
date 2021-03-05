@@ -1,5 +1,6 @@
 import React from 'react';
-import Task from './Task';
+import Task from '../Task/Task';
+import s from './style.taskList.module.css'
 
 export default function TaskList(props) {
   let tasks = props.tasks.map((task) => {
@@ -32,5 +33,5 @@ export default function TaskList(props) {
     }
   });
 
-  return <ul id='taskList'>{tasks}</ul>;
+  return <ul className={s.taskList}>{tasks}</ul>;
 }
