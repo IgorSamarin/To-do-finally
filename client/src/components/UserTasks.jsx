@@ -33,13 +33,14 @@ export default function UserTasks(props) {
     await EditTask(id, taskText, props.UserId);
     setAppState(await GetTasks(filters, props.UserId));
   };
+
+  
   const updateFilters = (chronology, complete) => {
     setFilters({
       chronology: chronology,
       complete: complete,
     });
   };
-
   useEffect(async () => {
     setAppState(await GetTasks(filters, props.UserId));
   }, [filters]);
