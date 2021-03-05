@@ -18,8 +18,19 @@ export default function UserTasks(props) {
   const [appState, setAppState] = useState([]);
 
   const callPostTasks = async (text) => {
-    await PostTask(text, props.UserId);
-    setAppState(await GetTasks(filters, props.UserId));
+    const newTask = await PostTask(text, props.UserId);
+    if (
+      (filters.chronology === 'normal' && filters.complete == 'false') ||
+      (filters.chronology === 'normal' && filters.complete == 'all')
+    ) {
+      setAppState([newTask, ...appState]);
+    }
+    if (
+      (filters.chronology === 'reverse' && filters.complete == 'false') ||
+      (filters.chronology === 'reverse' && filters.complete == 'all')
+    ) {
+      setAppState([...appState, newTask]);
+    }
   };
   const callDeleteTasks = async (id) => {
     await DeleteTask(id, props.UserId);
@@ -34,7 +45,6 @@ export default function UserTasks(props) {
     setAppState(await GetTasks(filters, props.UserId));
   };
 
-  
   const updateFilters = (chronology, complete) => {
     setFilters({
       chronology: chronology,
