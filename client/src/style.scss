@@ -22,9 +22,6 @@ button {
   cursor: pointer;
 }
 body {
-  &::-webkit-scrollbar {
-    width: 0;
-  }
   font-family: sans-serif;
   font-size: 25px;
   color: rgba(255, 255, 255, 0.801);
@@ -37,17 +34,19 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-attachment: fixed;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   h1 {
     text-align: center;
     margin: 50px 0;
   }
-    #signOut {
-      position: fixed;
-      top: 50px;
-      right: 20px;
-      padding: 10px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-     background-color: rgba(255, 255, 255, 0.178);
-    }
-  
+  #signOut {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.178);
+  }
 }
