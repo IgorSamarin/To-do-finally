@@ -35,7 +35,7 @@ export const PostTask = async (text, userId) => {
 export const DeleteTask = async (id, userId) => {
   try {
     const result = await axios.delete(`${apiUrl}/user/${userId}/task/${id}`);
-    return result.data;
+    return result;
   } catch (e) {
     console.log(e.message);
   }
@@ -62,6 +62,7 @@ export const EditTask = async (id, text, userId) => {
     console.log(e.message);
   }
 };
+
 export const authentificationUser = async (username, password) => {
   try {
     const result = await axios.post(`${apiUrl}/user/authentification`, {

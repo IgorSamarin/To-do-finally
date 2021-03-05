@@ -33,12 +33,25 @@ export default function UserTasks(props) {
     }
   };
   const callDeleteTasks = async (id) => {
-    await DeleteTask(id, props.UserId);
-    setAppState(await GetTasks(filters, props.UserId));
+    const result = await DeleteTask(id, props.UserId);
+    if (result.status === 204) {
+      const taskToDelete = appState.find((task) => {
+        if (task.id === parseInt(id)) {
+          return task;
+        }
+      });
+      appState.splice(appState.indexOf(taskToDelete), 1);
+      setAppState([...appState]);
+    }
   };
   const callDoneTasks = async (id, complete) => {
-    await DoneTask(id, complete, props.UserId);
-    setAppState(await GetTasks(filters, props.UserId));
+    const result = await DoneTask(id, complete, props.UserId);
+    const taskToDone = appState.find((task) => {
+      if (task.id === result.id) {
+        return task;
+      }
+    });
+    appState[appState.indexOf(taskToDone)].complete = result.complete;
   };
   const callEditTasks = async (id, taskText) => {
     await EditTask(id, taskText, props.UserId);

@@ -4,6 +4,7 @@ import s from './style.task.module.css';
 export default function Task(props) {
   const [editMode, setMode] = useState(false);
   const [newText, setNewText] = useState(props.text);
+  const [taskDone, setTaskDone] = useState(props.complete);
   const li = useRef();
   const toggleEditMode = () => {
     if (editMode && newText) {
@@ -25,19 +26,14 @@ export default function Task(props) {
     props.callDeleteTasks(props.id);
   };
   const doneTasks = () => {
-    props.callDoneTasks(props.id, !props.complete);
+    setTaskDone(!taskDone);
+    li.current.classList.toggle(`${s.complete}`)
+    props.callDoneTasks(props.id, taskDone);
   };
   const editTask = (text) => {
     props.callEditTasks(props.id, text);
   };
 
-  useEffect(() => {
-    if (props.addClassDone) {
-      li.current.classList.add(`${s.complete}`);
-    } else {
-      li.current.classList.remove(`${s.complete}`);
-    }
-  }, [props.addClassDone]);
 
   return (
     <li ref={li} className={`${s.task}`}>
