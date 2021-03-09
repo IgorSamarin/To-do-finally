@@ -64,26 +64,3 @@ export const EditTask = async (id, text, userId) => {
   }
 };
 
-export const authentificationUser = async (username, password) => {
-  try {
-    const result = await axios.post(`${apiUrl}/user/authentification`, {
-      username,
-      password,
-    });
-    return result.data;
-  } catch (e) {
-    return e.response.data;
-  }
-};
-
-export const registrationUser = async (username, password) => {
-  try {
-    const result = await axios.post(`${apiUrl}/user/registration`, {
-      username,
-      password,
-    });
-    return result.data;
-  } catch (e) {
-    return e.response.data;
-  }
-};

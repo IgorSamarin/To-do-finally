@@ -1,6 +1,7 @@
 const User = require('../../models').User;
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 
 router.post('/user/registration', async (req, res) => {
   try {
@@ -20,7 +21,15 @@ router.post('/user/registration', async (req, res) => {
       username: req.body.username,
       password: req.body.password,
     });
-    return res.status(201).send(newUser);
+    
+    const token = jwt.sign(
+      { id: newUser.id, username: newUser.username },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: '1h',
+      }
+    );
+    return res.status(201).send(token);
   } catch (err) {
     res.status(400).send(err.message);
   }

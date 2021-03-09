@@ -5,7 +5,7 @@ import {
   PostTask,
   DoneTask,
   EditTask,
-} from '../AxiosRequest';
+} from './../requests/AxiosRequest';
 import FilterBtns from './FilterBtns/FilterBtns';
 import Form from './Form/Form';
 import TaskList from './TaskList/TaskList';

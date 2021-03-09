@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { authentificationUser } from '../../AxiosRequest';
-import { registrationUser } from '../../AxiosRequest';
+import { loginUser } from '../../requests/auth';
+import { registrationUser } from '../../requests/auth';
 import s from './style.userPanel.module.css'
 
 export default function UserPanel(props) {
@@ -8,12 +8,11 @@ export default function UserPanel(props) {
   const [password, setPassword] = useState();
 
   const signIn = async () => {
-    const result = await authentificationUser(username, password);
+    const result = await loginUser(username, password);
     if (result.message) {
       alert(result.message);
     } else {
-      props.updateUser(result);
-      props.setIsAuth(true);
+      props.setUpdate(1)
     }
   };
   const signUp = async () => {
@@ -21,8 +20,7 @@ export default function UserPanel(props) {
     if (result.message) {
       alert(result.message);
     } else {
-      props.updateUser(result)
-      props.setIsAuth(true);
+      props.setUpdate(2)
     }
   };
   return (
