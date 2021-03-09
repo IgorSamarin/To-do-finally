@@ -45,8 +45,9 @@ export const DeleteTask = async (id, userId) => {
 export const DoneTask = async (id, classes, userId) => {
   try {
     const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
-      complete: classes,
+      complete: !classes,
     });
+    console.log(result.data);
     return result.data;
   } catch (e) {
     console.log(e.message);

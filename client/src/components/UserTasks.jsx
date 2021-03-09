@@ -44,6 +44,7 @@ export default function UserTasks(props) {
       setAppState([...appState]);
     }
   };
+  
   const callDoneTasks = async (id, complete) => {
     const result = await DoneTask(id, complete, props.UserId);
     const taskToDone = appState.find((task) => {
@@ -53,6 +54,7 @@ export default function UserTasks(props) {
     });
     appState[appState.indexOf(taskToDone)].complete = result.complete;
   };
+
   const callEditTasks = async (id, taskText) => {
     const result = await EditTask(id, taskText, props.UserId);
     if(result.status === 200){

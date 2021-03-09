@@ -33,39 +33,77 @@ export default function Task(props) {
     props.callDoneTasks(props.id, taskDone);
   };
 
-  return (
-    <li ref={li} className={`${s.task}`}>
-      {editMode && (
-        <input
-          onKeyDown={(event) => {
-            if (event.code === 'Enter') deactivateEditMode(event);
-          }}
-          defaultValue={newText}
-          autoFocus={true}
-          onChange={(event) => setInputText(event.target.value)}
-          // onBlur={(event) => {
-          //   deactivateEditMode(event);
-          // }}
-          type='text'
-        />
-      )}
-      {!editMode && (
-        <span onDoubleClick={activateEditMode} className='taskText'>
-          {newText}
-        </span>
-      )}
-
-      <button onClick={(event) => deleteTask(event)} className={s.taskBtn}>
-        Delete
-      </button>
-
-      <button onClick={(event) => toggleEditMode(event)} className={s.taskBtn}>
-        Edit
-      </button>
-
-      <button onClick={(event) => doneTasks(event)} className={s.taskBtn}>
-        Done
-      </button>
-    </li>
-  );
+  if(props.complete){
+    return (
+      <li ref={li} className={`${s.task} ${s.complete}`}>
+        {editMode && (
+          <input
+            onKeyDown={(event) => {
+              if (event.code === 'Enter') deactivateEditMode(event);
+            }}
+            defaultValue={newText}
+            autoFocus={true}
+            onChange={(event) => setInputText(event.target.value)}
+            // onBlur={(event) => {
+            //   deactivateEditMode(event);
+            // }}
+            type='text'
+          />
+        )}
+        {!editMode && (
+          <span onDoubleClick={activateEditMode} className='taskText'>
+            {newText}
+          </span>
+        )}
+  
+        <button onClick={(event) => deleteTask(event)} className={s.taskBtn}>
+          Delete
+        </button>
+  
+        <button onClick={(event) => toggleEditMode(event)} className={s.taskBtn}>
+          Edit
+        </button>
+  
+        <button onClick={(event) => doneTasks(event)} className={s.taskBtn}>
+          Done
+        </button>
+      </li>
+    );
+  }else{
+    return (
+      <li ref={li} className={`${s.task}`}>
+        {editMode && (
+          <input
+            onKeyDown={(event) => {
+              if (event.code === 'Enter') deactivateEditMode(event);
+            }}
+            defaultValue={newText}
+            autoFocus={true}
+            onChange={(event) => setInputText(event.target.value)}
+            // onBlur={(event) => {
+            //   deactivateEditMode(event);
+            // }}
+            type='text'
+          />
+        )}
+        {!editMode && (
+          <span onDoubleClick={activateEditMode} className='taskText'>
+            {newText}
+          </span>
+        )}
+  
+        <button onClick={(event) => deleteTask(event)} className={s.taskBtn}>
+          Delete
+        </button>
+  
+        <button onClick={(event) => toggleEditMode(event)} className={s.taskBtn}>
+          Edit
+        </button>
+  
+        <button onClick={(event) => doneTasks(event)} className={s.taskBtn}>
+          Done
+        </button>
+      </li>
+    );
+  }
 }
