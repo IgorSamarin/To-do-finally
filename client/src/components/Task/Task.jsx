@@ -5,12 +5,12 @@ export default function Task(props) {
   const [editMode, setMode] = useState(false);
   const [newText, setNewText] = useState(props.text);
   const [taskDone, setTaskDone] = useState(props.complete);
-  const [inputText, setInputText]= useState()
+  const [inputText, setInputText] = useState('');
   const li = useRef();
   const toggleEditMode = () => {
     setMode(!editMode);
-    if(editMode){
-      deactivateEditMode(inputText)
+    if (editMode) {
+      deactivateEditMode(inputText);
     }
   };
 
@@ -19,7 +19,7 @@ export default function Task(props) {
   };
   const deactivateEditMode = (e) => {
     setMode(false);
-    if ((inputText.replace(/[' ']{1,}/, '') !== '') && (inputText !== newText) ) {
+    if (inputText.replace(/[' ']{1,}/, '') !== '' && inputText !== newText) {
       props.callEditTasks(props.id, newText);
       setNewText(inputText);
     }
@@ -42,7 +42,7 @@ export default function Task(props) {
           }}
           defaultValue={newText}
           autoFocus={true}
-          onChange={event => setInputText(event.target.value)}
+          onChange={(event) => setInputText(event.target.value)}
           // onBlur={(event) => {
           //   deactivateEditMode(event);
           // }}
