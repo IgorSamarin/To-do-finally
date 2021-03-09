@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const apiUrl = process.env.REACT_APP_BASE_URL;
+
 export const GetTasks = async (filters, userId) => {
   try {
     let queryString = {
@@ -74,6 +75,7 @@ export const authentificationUser = async (username, password) => {
     return e.response.data;
   }
 };
+
 export const registrationUser = async (username, password) => {
   try {
     const result = await axios.post(`${apiUrl}/user/registration`, {
