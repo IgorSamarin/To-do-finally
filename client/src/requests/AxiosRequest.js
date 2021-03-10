@@ -36,8 +36,8 @@ export const PostTask = async (text, userId) => {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
-        }
-      },
+        },
+      }
     );
     return result.data;
   } catch (e) {
@@ -47,7 +47,13 @@ export const PostTask = async (text, userId) => {
 
 export const DeleteTask = async (id, userId) => {
   try {
-    const result = await axios.delete(`${apiUrl}/user/${userId}/task/${id}`);
+    const result = await axios.delete(`${apiUrl}/user/${userId}/task/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
     return result;
   } catch (e) {
     console.log(e.message);
@@ -56,9 +62,19 @@ export const DeleteTask = async (id, userId) => {
 
 export const DoneTask = async (id, classes, userId) => {
   try {
-    const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
-      complete: !classes,
-    });
+    const result = await axios.put(
+      `${apiUrl}/user/${userId}/task/${id}`,
+      {
+        complete: !classes,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
     console.log(result.data);
     return result.data;
   } catch (e) {
@@ -68,9 +84,19 @@ export const DoneTask = async (id, classes, userId) => {
 
 export const EditTask = async (id, text, userId) => {
   try {
-    const result = await axios.put(`${apiUrl}/user/${userId}/task/${id}`, {
-      text: text,
-    });
+    const result = await axios.put(
+      `${apiUrl}/user/${userId}/task/${id}`,
+      {
+        text: text,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
     return result;
   } catch (e) {
     console.log(e.message);
