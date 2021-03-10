@@ -26,7 +26,7 @@ router.post('/user/registration', async (req, res) => {
       { id: newUser.id, username: newUser.username },
       process.env.SECRET_KEY,
       {
-        expiresIn: 10,
+        expiresIn: 60*15,
       }
     );
     return res.status(201).send(token);
