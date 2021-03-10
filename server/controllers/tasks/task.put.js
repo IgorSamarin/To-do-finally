@@ -1,10 +1,10 @@
 const Task = require('../../models').Task;
 const express = require('express');
 const router = express.Router();
+const authorization = require('../../middleware/authMiddleware');
 
-
-// /user/:id/tasks
-router.put('/user/:userId/task/:id', async (req, res) => {
+router.put('/user/:userId/task/:id', authorization, async (req, res) => {
+  if (req.decoded) {
     try {
       const task = req.body;
       if (!task.text && task.complete === undefined) {
@@ -24,5 +24,8 @@ router.put('/user/:userId/task/:id', async (req, res) => {
       console.log(err.message);
       res.status(400).send(err.message);
     }
-  })
-  module.exports = router;
+  } else {
+    res.status(401).send({ message: 'Not auth' });
+  }
+});
+module.exports = router;
