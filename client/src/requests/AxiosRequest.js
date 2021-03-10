@@ -15,7 +15,7 @@ export const GetTasks = async (filters, userId) => {
         headers: {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
-          'Authorization': `Bearer ${localStorage.getItem('token')}` 
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }
     );
@@ -28,7 +28,17 @@ export const GetTasks = async (filters, userId) => {
 
 export const PostTask = async (text, userId) => {
   try {
-    const result = await axios.post(`${apiUrl}/user/${userId}/tasks`, { text });
+    const result = await axios.post(
+      `${apiUrl}/user/${userId}/tasks`,
+      { text },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-cache',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      },
+    );
     return result.data;
   } catch (e) {
     console.log(e.message);
@@ -66,4 +76,3 @@ export const EditTask = async (id, text, userId) => {
     console.log(e.message);
   }
 };
-
