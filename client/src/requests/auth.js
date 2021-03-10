@@ -10,6 +10,7 @@ export const loginUser = async (username, password) => {
       password,
     });
     if (result.data) {
+      console.log(result.data);
       localStorage.setItem('token', result.data);
     }
     return result.data;
@@ -45,3 +46,4 @@ export const checkUser = () => {
     alert(err.message);
   }
 };
+

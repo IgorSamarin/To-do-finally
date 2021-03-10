@@ -15,12 +15,14 @@ export const GetTasks = async (filters, userId) => {
         headers: {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` 
         },
       }
     );
     return result.data;
   } catch (e) {
     console.log(e.message);
+    console.log(e.response.data.message);
   }
 };
 
