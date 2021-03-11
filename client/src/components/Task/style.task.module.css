@@ -1,7 +1,10 @@
 .task {
-  padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 5px;
   display: flex;
   list-style-type: none;
   background-color: rgba(255, 255, 255, 0.178);
@@ -32,7 +35,10 @@
 }
 
 .task input {
-  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin-right: 20px;
   background-color: inherit;
 }
 
@@ -58,5 +64,20 @@
 
 .task .btnDelete {
   margin-left: 5px;
+}
+
+.task .taskBodyInput {
+  margin-top: 10px;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.822);
+  width: 100%;
+  margin-right: 0;
+}
+
+.task .taskBodyText {
+  margin-top: 10px;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.822);
+  width: 100%;
 }
 /*# sourceMappingURL=style.task.module.css.map */
