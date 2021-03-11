@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+const static = __dirname+'/build/'
+
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -18,6 +20,7 @@ const start = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
+    app.use(express.static(static))
     require('./server/routes')(app);
     app.listen(PORT, () => console.log(`server working on ${PORT}`));
   } catch (e) {
