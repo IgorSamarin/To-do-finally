@@ -18,7 +18,7 @@ module.exports = (app) => {
         path.basename(file.path)[0] === '.'
       )
         return;
-      app.use('/api', require(file.path));
+      app.use('/', require(file.path));
       controllersCount++;
     });
 
